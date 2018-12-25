@@ -5,5 +5,5 @@ http://www.williamyu.top
 
 If you use it, please acknowledge the following work:
 
-William Yu, Junfeng Wu, Bowen Fang
+William Yu, Junfeng Wu, Bowen Fang, He Qiang
 “People detect dataset in classroom HUST, Computer Vision, 2018"

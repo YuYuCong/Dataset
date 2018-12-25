@@ -1,10 +1,13 @@
 add_library( mylibs SHARED
-  getimg.cpp
+  dataset.cpp
 )
 
 target_link_libraries( mylibs
     ${THIRD_PARTY_LIBS}
 )
 
-add_executable( dataset dataset.cpp )
-target_link_libraries( dataset mylibs )
+add_executable( getimg getimg.cpp )
+target_link_libraries( getimg mylibs )
+
+add_executable( video2img video2img.cpp )
+target_link_libraries( video2img mylibs )

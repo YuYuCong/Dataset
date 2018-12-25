@@ -19,4 +19,4 @@ make
 echo ---------------------------------------
 ls
 cd ../bin
-./dataset
+./getimg
