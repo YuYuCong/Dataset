@@ -58,9 +58,9 @@ python2 finall_test.py
 
 We tested BaiduPaddlepaddle as well as Face++ API
 
-![baidupaddle](/home/will/code/0.daily_code/45.PeopleDetect/Images/baidupaddle.png)
+![baidupaddle](./Images/baidupaddle.png)
 
-![face++](/home/will/code/0.daily_code/45.PeopleDetect/Images/face++.png)
+![face++](./Images/face++.png)
 
 ##### Reference
 
