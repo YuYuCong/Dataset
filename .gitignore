@@ -1,3 +1,5 @@
 /build/
-/data/data_head/
+/data/video/
+/data/data_head_img/
 /.vscode/
+/pycode/

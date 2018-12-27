@@ -17,7 +17,7 @@
 
 /// Global Variables
 #define gVLUM 400 //数据集大小
-#define gFREC 0 //采集周期：图片采集周期1000ms，视频采集1帧20ms
+#define gFREC 1 //采集周期：图片采集周期1000ms，视频采集1帧20ms
 
 string path_to_data = "../data/video/";
 string videoname = "head.mp4";
@@ -32,7 +32,7 @@ string videoname = "head.mp4";
  * @brief 在字符串前面补0
  * @param length：字符串固定长度 
  * @return 
- */  
+ */
 template <typename T, typename S>
 T fill_cast(const S& v, const int width, const char c)
 {
