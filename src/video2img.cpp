@@ -10,21 +10,38 @@
  * Programmer(s)           : William Yu, windmillyucong@163.com
  * Company                 : HUST
  * Modification History	   : ver1.0, 2018.10.24, William Yu
- *                           
+ *                           ver1.0, 2019.01.28, William Yu, add cmdLineParser
 =================================================================================*/
 
 #include "include_all.h"
 
 /// Global Variables
-#define gVLUM 400 //数据集大小
-#define gFREC 1 //采集周期：图片采集周期1000ms，视频采集1帧20ms
-
-string path_to_data = "../data/video/";
-string videoname = "head.mp4";
-
-#define k 0.5  //数据压缩比例
+const char* keys =
+{
+    "{help h           |                            | show help message}"
+    "{@path_to_video   |../data/video/video.mp4     | input video}"
+    "{@path_to_output  |../data/video/frameoutput/  | output img}"
+    "{k                |1                           | Compression ratio}"
+    "{VLUM v           |400                         | 数据集大小}"
+    "{FREC f           |1                           | 采集周期：图片采集周期1000ms，视频采集1帧20ms}"
+};
 
 /// Function Definitions
+
+/** 
+ * @function help
+ * @author William Yu
+ * @brief print a help message, and the OpenCV version
+ */
+static void help()
+{
+    cout << "\nSplit video frame to img,"
+            "\nUsing OpenCV version " << CV_VERSION << endl;
+    cout << "\nCall:\n"
+            "    $ cd ./bin\n\n"
+            "    $ ./video2img [path_to_video -- Default ../data/video/video.mp4] [path_to_video -- Default ../data/video/frameoutput/] -k=[压缩率 -- Default 1 不压缩] -v=[图片数 -- Default 400]\n"
+            "    eg. $ ./video2img  ../data/video/video.mp4 ../data/video/frameoutput/ -k=0.8 -v=200\n\n";
+}
 
 /** 
  * @function fill_cast
@@ -43,13 +60,24 @@ T fill_cast(const S& v, const int width, const char c)
         return result;
 }
 
+
+
+
 /**
  * @function main
  * @author William Yu
  */
 int main(int argc,char** argv)
 {
-	VideoCapture capture(path_to_data + videoname); 
+    CommandLineParser parser(argc, argv, keys);  
+    if (parser.has("help"))  { help();  return 0; }
+    string path_to_video = parser.get<string>( 0 );
+    string path_to_output = parser.get<string>( 1 );
+    double k = parser.get<double>( "k" );
+    int gVLUM = parser.get<double>( "VLUM" );
+    int gFREC = parser.get<double>( "FREC" );
+	
+    VideoCapture capture(path_to_video); 
     cout<<"width:"<<capture.get(CV_CAP_PROP_FRAME_WIDTH)<<endl;
     cout<<"height:"<<capture.get(CV_CAP_PROP_FRAME_HEIGHT)<<endl;
 
@@ -71,7 +99,7 @@ int main(int argc,char** argv)
         //左补齐0
         filenum = fill_cast<string>(filenum, 3, '0');
         cout << "No." << filenum << endl;
-        imwrite( path_to_data + "data" + filenum + ".png", frame );  
+        imwrite( path_to_output + "data" + filenum + ".png", frame );  
 
         if ( i >= gVLUM )
             break;
@@ -82,4 +110,3 @@ int main(int argc,char** argv)
 	}
 	return 0;
 }
-

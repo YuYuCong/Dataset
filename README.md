@@ -26,9 +26,11 @@ Launch
 
 ```shell
 cd bin
-./getimg
-./video2img
 
+./getimg
+
+./video2img [path_to_video -- Default ../data/video/video.mp4] [path_to_video -- Default ../data/video/frameoutput/] -k=0.8 -v=200
+e.g. $ ./video2img  ../data/video/video.mp4 ../data/video/frameoutput/ -k=0.8 -v=200
 ```
 
 Samples Creation
